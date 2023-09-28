@@ -9,6 +9,7 @@ const getTareas = asyncHandler(async (req, res) => {
 })
 
 const setTarea = asyncHandler(async (req, res) => {
+
     if (!req.body.texto) {
         res.status(400)
         throw new Error('Por favor teclea una tarea')
@@ -42,14 +43,10 @@ const deleteTarea = asyncHandler(async (req, res) => {
         throw new Error('La tarea no fué encontrada')
     }
 
-
     tarea.deleteOne()
-    res.status(200).json({ id: tarea._id })
-
-
     //const deletedTarea = await Tarea.findByIdAndDelete(req.params.id)
-    //tarea.deleteOne()
-    //res.status(200).json({ id: tarea._id })
+
+    res.status(200).json({ id: tarea._id })
 })
 
 module.exports = {
